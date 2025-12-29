@@ -1,0 +1,36 @@
+[project]
+name = "promptAnonymizer"
+version = "0.1.0"
+description = "This tool helps you sanitize your prompts and avoid any sensitive information leaks while using LLMs"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+	"requests",
+	"presidio-analyzer",
+	"presidio-anonymizer",
+	"spacy",
+	"langgraph",
+	"langchain-core",
+	"typing_extensions",
+	"faker",
+	"pycountry",
+	"torch",
+	"bert_score",
+	"sacrebleu",
+	"rouge_score",
+	"tiktoken",
+	"pandas",
+	"langchain-community",
+	"langchain-openai"
+]
+
+[project.scripts]
+promptAnonymizer-run = "promptAnonymizer.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["promptAnonymizer*"]
+namespaces = true
