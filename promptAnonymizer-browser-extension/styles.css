@@ -1,0 +1,39 @@
+/* Minimal styles for overlay and modal */
+
+.prompt-anonymizer-overlay.hidden { display: none !important; }
+
+.prompt-anonymizer-overlay { position: fixed; inset: 0; z-index: 2147483647; display: flex; align-items: center; justify-content: center; }
+.prompt-anonymizer-overlay-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(2px); }
+
+.prompt-anonymizer-modal { position: relative; z-index: 1; background: #121212; color: #e6e6e6; border: 1px solid #2a2a2a; border-radius: 12px; width: min(720px, 92vw); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.prompt-anonymizer-modal-title { margin: 16px 20px 0 20px; font-size: 16px; font-weight: 600; }
+.prompt-anonymizer-modal-body { padding: 12px 20px 0 20px; }
+.prompt-anonymizer-textarea { width: 100%; min-height: 200px; resize: vertical; background: #1a1a1a; color: #e6e6e6; border: 1px solid #2f2f2f; border-radius: 8px; padding: 10px; font-size: 14px; line-height: 1.5; }
+.prompt-anonymizer-modal-actions { display: flex; gap: 10px; justify-content: flex-end; padding: 12px 20px 16px 20px; }
+.prompt-anonymizer-btn { border: 0; padding: 8px 14px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.prompt-anonymizer-btn-primary { background: #7c3aed; color: #fff; }
+.prompt-anonymizer-btn-primary:hover { background: #6d28d9; }
+.prompt-anonymizer-btn-secondary { background: #2a2a2a; color: #ddd; }
+.prompt-anonymizer-btn-secondary:hover { background: #353535; }
+
+/* Spinner */
+.prompt-anonymizer-spinner { width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.2); border-top-color: #7c3aed; border-radius: 50%; animation: prompt-anonymizer-spin 1s linear infinite; margin: 40px auto; }
+
+.hidden { display: none; }
+
+.prompt-anonymizer-error { color: #ffb4b4; font-size: 12px; padding: 4px 20px 16px 20px; }
+
+@keyframes prompt-anonymizer-spin { to { transform: rotate(360deg); } }
+
+.prompt-anonymizer-sensitivity-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 12px 16px;
+  margin: 10px 20px 0 20px;
+  border-radius: 6px;
+  border: 1px solid #ffeeba;
+  font-size: 14px;
+  font-weight: 500;
+  display: block; /* Changed from flex to block for better multi-line support */
+  line-height: 1.4;
+}

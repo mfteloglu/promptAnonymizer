@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 0;
+      margin: 0;
+      width: 380px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      padding: 15px;
+    }
+    .section {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #555;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+    .option {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+    .option:last-child {
+      margin-bottom: 0;
+    }
+    .option input[type="checkbox"] {
+      margin-right: 10px;
+      accent-color: #3498db;
+      cursor: pointer;
+    }
+    .option label {
+      font-size: 13px;
+      cursor: pointer;
+      flex: 1;
+      color: #333;
+    }
+    .input-group {
+      margin-bottom: 12px;
+    }
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: #666;
+      font-weight: 500;
+    }
+    .input-group input[type="text"],
+    .input-group input[type="number"],
+    .input-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+      box-sizing: border-box;
+    }
+    .input-group input:focus,
+    .input-group select:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    button:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      min-height: 18px;
+    }
+    .success { color: #27ae60; }
+    .error { color: #e74c3c; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="section">
+      <div class="section-title">General</div>
+      <div class="option">
+        <input type="checkbox" id="use_llm_agent_for_pii">
+        <label for="use_llm_agent_for_pii">Use LLM Agent for PII</label>
+      </div>
+      <div class="input-group">
+        <label for="anonymization_method">Anonymization Method</label>
+        <select id="anonymization_method">
+          <option value="pseudonymization">Pseudonymization (Default)</option>
+          <option value="fpe">Format-Preserving Encryption (FPE)</option>
+          <option value="masking">Data Masking (****)</option>
+        </select>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="use_reidentification">
+        <label for="use_reidentification">Use Re-identification Check</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Ollama</div>
+      <div class="input-group">
+        <label for="ollama_port">Port</label>
+        <input type="number" id="ollama_port" placeholder="11434" value="11434">
+      </div>
+      <div class="input-group">
+        <label for="ollama_model">Model</label>
+        <div class="row">
+          <select id="ollama_model">
+            <option value="llama3.2">llama3.2</option>
+          </select>
+          <button id="fetch_models">Fetch Models</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="status"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

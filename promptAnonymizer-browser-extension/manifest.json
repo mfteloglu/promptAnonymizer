@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Prompt Anonymizer",
+  "version": "0.1.0",
+  "description": "Intercepts ChatGPT prompts, calls local anonymizer API, and lets you accept replacements.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:11434/*",
+    "http://localhost:11434/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://www.chatgpt.com/*",
+        "https://chat.openai.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
