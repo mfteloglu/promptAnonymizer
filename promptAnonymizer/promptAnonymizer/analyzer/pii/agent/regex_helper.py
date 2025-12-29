@@ -36,6 +36,9 @@ def detect_pii_indices(text, pii_json):
     if not pii_list:
         # Fallback: Find individual objects
         # We look for { followed by "text" ... }
+        # Also handle malformed objects using [] instead of {} like ["text": "val"]
+        
+        # Pattern 1: Standard objects { ... }
         matches = re.finditer(r"(\{.*?\})", pii_json, re.DOTALL)
         for match in matches:
             try:
@@ -43,7 +46,21 @@ def detect_pii_indices(text, pii_json):
                 if isinstance(obj, dict):
                     pii_list.append(obj)
             except:
-                # Try to fix common issues like missing quotes keys
+                pass
+                
+        # Pattern 2: Malformed objects using [] like ["text": "val", ...] or mixed ["text": ... }
+        # We look for [ followed by "text" and ending with ] or }
+        matches_brackets = re.finditer(r"(\[\s*\"text\".*?[\]\}])", pii_json, re.DOTALL)
+        for match in matches_brackets:
+            content = match.group(1)
+            # Replace outer brackets with { }
+            # We strip the first and last char and wrap in {}
+            fixed_content = "{" + content[1:-1] + "}"
+            try:
+                obj = json.loads(fixed_content)
+                if isinstance(obj, dict):
+                    pii_list.append(obj)
+            except:
                 pass
 
     if not pii_list:
