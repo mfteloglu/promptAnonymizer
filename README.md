@@ -51,4 +51,4 @@ uvicorn main:app --reload
 
 For more detailed instructions, please refer to the `README.md` files within each subdirectory.
 
-In case of a setup/build issue, please contact via mailto:mfteloglu@gmail.cm
+In case of a setup/build issue, please contact via mfteloglu@gmail.com
