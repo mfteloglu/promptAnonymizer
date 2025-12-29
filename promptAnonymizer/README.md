@@ -11,7 +11,7 @@ An initial Purpose Detection step determines whether the sensitive information i
 ### High-Level Flow
 1. Purpose Detection: classify prompt intent (e.g., `SUMMARIZATION`, `QUESTION_ANSWERING`).
 2. PII Detection → Purpose-Aware Anonymization: detect PII and anonymize only entities not relevant to the purpose.
-3. Context Detection → Purpose-Aware Anonymization: detect context sensitivity (e.g., `MEDICAL`, `BUSINESS`); anonymize the text only if sensitive AND not relevant to the purpose.
+3. Context Detection → Purpose-Aware Anonymization: detect context sensitivity (e.g., `HEALTH_DATA`, `FINANCIAL_DATA`); anonymize the text only if detected PII is sensitive AND not relevant to the purpose.
 
 ### Key Modules
 - `pipeline/langgraph_app.py`: Orchestrates the full pipeline (purpose → PII → context → re-identification).
